@@ -1,6 +1,9 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { Product, connectDB } from "./db.js";
+
+connectDB();
 
 dotenv.config();
 const PORT = process.env.BACKEND_PORT;
