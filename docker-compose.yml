@@ -43,12 +43,15 @@ services:
   frontend:
     image: node:22-alpine
     working_dir: /app
+    stdin_open: true
+    tty: true
+    shm_size: '2gb'
     volumes:
       - ./frontend:/app
       - frontend_node_modules:/app/node_modules
     environment:
       - VITE_API_URL=${VITE_API_URL}
-    command: sh -c "npm install && npm run dev -- --host 0.0.0.0 --force"
+    command: sh -c "npm install && npx vite"
     ports:
       - "${FRONTEND_PORT}:5173"
     depends_on:
